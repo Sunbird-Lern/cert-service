@@ -127,15 +127,7 @@ public class CertStoreFactory {
      * @return instance of azureStore or awsStore
      */
     public CloudStore getCloudStore(StoreConfig storeConfig) {
-        CloudStore cloudStore = null;
-        if (JsonKey.AZURE.equals(storeConfig.getType())) {
-            cloudStore = new AzureStore(storeConfig);
-        } else if (JsonKey.AWS.equals(storeConfig.getType())) {
-            cloudStore = new AwsStore(storeConfig);
-        } else if (JsonKey.GCP.equals(storeConfig.getType())) {
-            cloudStore = new GcpStore(storeConfig);
-        }
-        return cloudStore;
+        return new CloudStore(storeConfig);
     }
 
     /**

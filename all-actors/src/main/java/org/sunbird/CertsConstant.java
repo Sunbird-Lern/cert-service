@@ -156,27 +156,11 @@ public class CertsConstant {
         return CLOUD_STORAGE_TYPE;
     }
 
-    public String getAzureStorageSecret() {
+    public String getCloudStorageSecret() {
         return getPropertyFromEnv(JsonKey.PRIVATE_CLOUD_STORAGE_SECRET);
     }
 
-    public String getAzureStorageKey() {
-        return getPropertyFromEnv(JsonKey.PRIVATE_CLOUD_STORAGE_KEY);
-    }
-
-    public String getAwsStorageSecret() {
-        return getPropertyFromEnv(JsonKey.PRIVATE_CLOUD_STORAGE_SECRET);
-    }
-
-    public String getAwsStorageKey() {
-        return getPropertyFromEnv(JsonKey.PRIVATE_CLOUD_STORAGE_KEY);
-    }
-
-    public String getGcpStorageSecret() {
-        return getPropertyFromEnv(JsonKey.PRIVATE_CLOUD_STORAGE_SECRET);
-    }
-
-    public String getGcpStorageKey() {
+    public String getCloudStorageKey() {
         return getPropertyFromEnv(JsonKey.PRIVATE_CLOUD_STORAGE_KEY);
     }
 
@@ -205,41 +189,9 @@ public class CertsConstant {
         String type = getCloudStorageType();
         Map<String, Object> storeParams = new HashMap<>();
         storeParams.put(JsonKey.TYPE, type);
-        if (StringUtils.isNotBlank(type)) {
-            if (type.equals(JsonKey.AZURE)) {
-                storeParams.put(JsonKey.AZURE, getAzureParams());
-            }
-            if (type.equals(JsonKey.AWS)) {
-                storeParams.put(JsonKey.AWS, getAwsParams());
-            }
-            if (type.equals(JsonKey.GCP)) {
-                storeParams.put(JsonKey.GCP, getGcpParams());
-            }
-        }
+        storeParams.put(JsonKey.containerName, getCONTAINER_NAME());
+        storeParams.put(JsonKey.ACCOUNT, getCloudStorageKey());
+        storeParams.put(JsonKey.KEY, getCloudStorageSecret());
         return storeParams;
-    }
-
-    private Map<String, String> getGcpParams() {
-        Map<String, String> azureParams = new HashMap<>();
-        azureParams.put(JsonKey.containerName, getCONTAINER_NAME());
-        azureParams.put(JsonKey.ACCOUNT, getGcpStorageKey());
-        azureParams.put(JsonKey.KEY, getGcpStorageSecret());
-        return azureParams;
-    }
-
-    private Map<String, String> getAzureParams() {
-        Map<String, String> azureParams = new HashMap<>();
-        azureParams.put(JsonKey.containerName, getCONTAINER_NAME());
-        azureParams.put(JsonKey.ACCOUNT, getAzureStorageKey());
-        azureParams.put(JsonKey.KEY, getAzureStorageSecret());
-        return azureParams;
-    }
-
-    private Map<String, String> getAwsParams() {
-        Map<String, String> awsParams = new HashMap<>();
-        awsParams.put(JsonKey.containerName, getCONTAINER_NAME());
-        awsParams.put(JsonKey.ACCOUNT, getAwsStorageKey());
-        awsParams.put(JsonKey.KEY, getAwsStorageSecret());
-        return awsParams;
     }
 }

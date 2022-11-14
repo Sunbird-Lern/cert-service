@@ -53,7 +53,7 @@ import static org.mockito.Mockito.when;
         CloudStorage.class,
         ICertStore.class,
         Localizer.class,
-        AzureStore.class,
+        CloudStore.class,
         FileUtils.class,
         File.class,
         StorageServiceFactory.class,
@@ -117,8 +117,7 @@ public class CertificateGeneratorActorTest {
         File file6 = PowerMockito.mock(File.class);
         PowerMockito.when(FileUtils.getFile(Mockito.anyString())).thenReturn(file6);
         when(file6.exists()).thenReturn(true);
-        AzureStoreConfig azureStoreConfig = PowerMockito.mock(AzureStoreConfig.class);
-        PowerMockito.when(storeParams.getAzureStoreConfig()).thenReturn(azureStoreConfig);
+        StoreConfig azureStoreConfig = PowerMockito.mock(StoreConfig.class);
         PowerMockito.when(azureStoreConfig.getAccount()).thenReturn("Mockito.anyString()");
         PowerMockito.when(azureStoreConfig.getKey()).thenReturn("Mockito.anyString()");
         StorageConfig storageConfig = PowerMockito.mock(StorageConfig.class);

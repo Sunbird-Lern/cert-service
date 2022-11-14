@@ -26,9 +26,6 @@ public interface JsonKey {
     String CLOUD_UPLOAD_RETRY_COUNT = "CLOUD_UPLOAD_RETRY_COUNT";
     String PRIVATE_CLOUD_STORAGE_SECRET = "PRIVATE_CLOUD_STORAGE_SECRET";
     String PRIVATE_CLOUD_STORAGE_KEY = "PRIVATE_CLOUD_STORAGE_KEY";
-    String AZURE="azure";
-    String AWS="aws";
-
     String GCP="gcloud";
     String SLUG ="sunbird_cert_slug";
     String ACCESS_CODE_LENGTH = "ACCESS_CODE_LENGTH";

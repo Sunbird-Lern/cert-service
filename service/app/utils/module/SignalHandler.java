@@ -2,7 +2,7 @@ package utils.module;
 
 import akka.actor.ActorSystem;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.sunbird.LoggerUtil;
 import play.api.Application;
 import play.api.Play;
 import scala.concurrent.duration.Duration;
@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @Singleton
 public class SignalHandler {
 
-  Logger logger = Logger.getLogger(SignalHandler.class);
+  private static LoggerUtil logger = new LoggerUtil(SignalHandler.class);
   private String stopDelay = System.getenv("sigterm_stop_delay");
   private static FiniteDuration STOP_DELAY = null;
 
@@ -37,7 +37,7 @@ public class SignalHandler {
         new Signal("TERM"),
         signal -> {
           isShuttingDown = true;
-            logger.info("Termination required, swallowing SIGTERM to allow current requests to finish");
+            logger.info(null,"Termination required, swallowing SIGTERM to allow current requests to finish");
           actorSystem
               .scheduler()
               .scheduleOnce(

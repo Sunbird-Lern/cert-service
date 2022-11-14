@@ -21,10 +21,7 @@ public class QRStorageParams {
         logger.info("QRStorageParams getting storage params from env ");
         Map<String, Object> storeParams = new HashMap<>();
         storeParams.put(JsonKey.TYPE, type);
-        if (StringUtils.isNotBlank(type) ||
-                (type.equals(JsonKey.AZURE) ||
-                 type.equals(JsonKey.AWS) ||
-                 type.equals(JsonKey.GCP))) {
+        if (StringUtils.isNotBlank(type)) {
             storeParams.put(type, getCloudStoreParams());
         }
         return storeParams;
