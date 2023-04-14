@@ -29,7 +29,7 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
-    "lodash-es": "^4.17.11",
+    "lodash-es": "^4.17.21",
     "ng2-semantic-ui": "github:project-sunbird/ng2-semantic-ui",
     "popper.js": "^1.15.0",
     "rxjs": "~6.3.3",
