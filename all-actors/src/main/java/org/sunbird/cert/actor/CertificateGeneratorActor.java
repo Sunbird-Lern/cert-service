@@ -112,7 +112,7 @@ public class CertificateGeneratorActor extends BaseActor {
         storageEndpoint = Option.apply(certVar.getCloudStorageEndpoint());
         storageRegion = Option.apply("");        
         storageConfig = new StorageConfig(certVar.getCloudStorageType(), storageKey, storageSecret,storageEndpoint,storageRegion);
-        logger.info(null, "CertificateGeneratorActor:getStorageService:storage object formed: {}" ,storageConfig.toString());
+        logger.info(null, "CertificateGeneratorActor:getStorageService:storage object formed");
         return StorageServiceFactory.getStorageService(storageConfig);
     }
 

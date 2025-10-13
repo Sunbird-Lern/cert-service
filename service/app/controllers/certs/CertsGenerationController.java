@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletionStage;
 
-import akka.actor.ActorRef;
+import org.apache.pekko.actor.ActorRef;
 import org.sunbird.incredible.processor.JsonKey;
 import org.sunbird.cert.actor.operation.CertActorOperation;
 

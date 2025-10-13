@@ -1,6 +1,6 @@
 package controllers.health;
 
-import akka.actor.ActorRef;
+import org.apache.pekko.actor.ActorRef;
 import controllers.BaseController;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -47,14 +47,14 @@ public class HealthController extends BaseController {
    *
    * @return a CompletableFuture of success response
    */
-  public CompletionStage<Result> getHealth() throws BaseException {
+  public CompletionStage<Result> getHealth(Http.Request httpRequest) throws BaseException {
     try {
       handleSigTerm();
       logger.info("complete health method called.");
-      CompletionStage<Result> response = handleRequest(healthActorRef, request(), null, HEALTH_ACTOR_OPERATION_NAME);
+      CompletionStage<Result> response = handleRequest(healthActorRef, httpRequest, null, HEALTH_ACTOR_OPERATION_NAME);
       return response;
     }  catch (Exception e) {
-      return CompletableFuture.completedFuture(RequestHandler.handleFailureResponse(e,request()));
+      return CompletableFuture.completedFuture(RequestHandler.handleFailureResponse(e,httpRequest));
     }
   }
 
@@ -74,7 +74,7 @@ public class HealthController extends BaseController {
               ? cf.thenApplyAsync(Results::ok)
               : cf.thenApplyAsync(Results::badRequest);
     } catch (Exception e) {
-      return CompletableFuture.completedFuture(RequestHandler.handleFailureResponse(e,request()));
+      return CompletableFuture.completedFuture(RequestHandler.handleFailureResponse(e,httpRequest));
     }
   }
 

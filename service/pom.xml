@@ -24,7 +24,7 @@
     </pluginRepositories>
     <dependencies>
       <dependency>
-        <groupId>com.typesafe.play</groupId>
+        <groupId>org.playframework</groupId>
         <artifactId>play-netty-server_${scala.major.version}</artifactId>
         <version>${play2.version}</version>
         <scope>runtime</scope>
@@ -38,12 +38,12 @@
       <dependency>
         <groupId>io.netty</groupId>
         <artifactId>netty-codec-http</artifactId>
-        <version>4.1.44.Final</version>
+        <version>${netty.version}</version>
       </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.10.1</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
@@ -51,7 +51,7 @@
             <version>${scala.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.typesafe.play</groupId>
+            <groupId>org.playframework</groupId>
             <artifactId>play_${scala.major.version}</artifactId>
             <version>${play2.version}</version>
             <exclusions>
@@ -63,10 +63,14 @@
                     <groupId>com.google.guava</groupId>
                     <artifactId>guava</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-library</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.typesafe.play</groupId>
+            <groupId>org.playframework</groupId>
             <artifactId>play-guice_${scala.major.version}</artifactId>
             <version>${play2.version}</version>
         </dependency>
@@ -89,21 +93,25 @@
                     <groupId>com.fasterxml.jackson.module</groupId>
                 </exclusion>
                 <exclusion>
-                    <artifactId>jackson-module-scala_2.11</artifactId>
-                    <groupId>com.fasterxml.jackson.module</groupId>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-library</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-reflect</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.typesafe.play</groupId>
-            <artifactId>play-akka-http-server_${scala.major.version}</artifactId>
+            <groupId>org.playframework</groupId>
+            <artifactId>play-pekko-http-server_${scala.major.version}</artifactId>
             <version>${play2.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-remote_${scala.major.version}</artifactId>
-            <version>${akka.x.version}</version>
+            <groupId>org.apache.pekko</groupId>
+            <artifactId>pekko-remote_${scala.major.version}</artifactId>
+            <version>${pekko.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>io.netty</groupId>
@@ -114,17 +122,27 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.44.Final</version>
+            <version>${netty.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.typesafe.play</groupId>
-            <artifactId>filters-helpers_${scala.major.version}</artifactId>
+            <groupId>org.playframework</groupId>
+            <artifactId>play-filters-helpers_${scala.major.version}</artifactId>
             <version>${play2.version}</version>
         </dependency>
         <dependency>
             <groupId>org.sunbird</groupId>
             <artifactId>es-utils</artifactId>
             <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-library</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.scala-lang</groupId>
+                    <artifactId>scala-reflect</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
        <!-- <dependency>
@@ -165,7 +183,7 @@
         </dependency>
         <!--Play Helper Class for Testing Controllers  -->
         <dependency>
-            <groupId>com.typesafe.play</groupId>
+            <groupId>org.playframework</groupId>
             <artifactId>play-test_${scala.major.version}</artifactId>
             <version>${play2.version}</version>
             <scope>test</scope>

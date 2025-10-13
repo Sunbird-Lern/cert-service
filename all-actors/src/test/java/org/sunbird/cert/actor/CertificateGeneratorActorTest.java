@@ -1,9 +1,9 @@
 package org.sunbird.cert.actor;
 
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import akka.actor.Props;
-import akka.testkit.javadsl.TestKit;
+import org.apache.pekko.actor.ActorRef;
+import org.apache.pekko.actor.ActorSystem;
+import org.apache.pekko.actor.Props;
+import org.apache.pekko.testkit.javadsl.TestKit;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
@@ -27,7 +27,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.sunbird.CertMapper;
 import org.sunbird.incredible.processor.views.SvgGenerator;
 import org.sunbird.cloud.storage.BaseStorageService;
-import org.sunbird.cloud.storage.factory.StorageConfig;
 import org.sunbird.cloud.storage.factory.StorageServiceFactory;
 import org.sunbird.message.Localizer;
 import org.sunbird.message.ResponseCode;
@@ -121,12 +120,11 @@ public class CertificateGeneratorActorTest {
         StoreConfig azureStoreConfig = PowerMockito.mock(StoreConfig.class);
         PowerMockito.when(azureStoreConfig.getAccount()).thenReturn("Mockito.anyString()");
         PowerMockito.when(azureStoreConfig.getKey()).thenReturn("Mockito.anyString()");
-        StorageConfig storageConfig = PowerMockito.mock(StorageConfig.class);
-        PowerMockito.when(storeParams.getType()).thenReturn("Mockito.anyString()");
-        PowerMockito.whenNew(StorageConfig.class).withArguments(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Option.apply(Mockito.anyString()),Option.apply(Mockito.anyString())).thenReturn(storageConfig);
+        // Avoid mocking StorageConfig directly to prevent scala.Serializable compilation issues
         BaseStorageService storageService = PowerMockito.mock(BaseStorageService.class);
         PowerMockito.mockStatic(StorageServiceFactory.class);
-        PowerMockito.when(StorageServiceFactory.getStorageService(Mockito.any(StorageConfig.class))).thenReturn(storageService);
+        // Use withAnyArguments to avoid scala.Serializable compilation issues with StorageConfig parameter
+        PowerMockito.when(StorageServiceFactory.class, "getStorageService", Mockito.any()).thenReturn(storageService);
         PowerMockito.when(certStore.save(Mockito.any(File.class), Mockito.anyString())).thenReturn("Mockito.anyString()");
         PowerMockito.when(certStore.getPublicLink(Mockito.any(File.class), Mockito.anyString())).thenReturn("Mockito.anyString()");
         File file2 = PowerMockito.mock(File.class);

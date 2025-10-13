@@ -11,12 +11,12 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.10.1</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-actor_${scala.major.version}</artifactId>
-            <version>${akka.x.version}</version>
+            <groupId>org.apache.pekko</groupId>
+            <artifactId>pekko-actor_${scala.major.version}</artifactId>
+            <version>${pekko.version}</version>
         </dependency>
         <dependency>
             <groupId>org.sunbird.incredible</groupId>
@@ -24,15 +24,20 @@
             <version>0.1</version>
         </dependency>
         <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-testkit_${scala.major.version}</artifactId>
-            <version>2.5.16</version>
+            <groupId>org.apache.pekko</groupId>
+            <artifactId>pekko-testkit_${scala.major.version}</artifactId>
+            <version>${pekko.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
+            <version>${logback.version}</version>
         </dependency>
         <dependency>
             <groupId>net.logstash.logback</groupId>

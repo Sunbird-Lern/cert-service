@@ -1,6 +1,6 @@
 package org.sunbird;
 
-import akka.actor.UntypedAbstractActor;
+import org.apache.pekko.actor.UntypedAbstractActor;
 import org.sunbird.incredible.processor.JsonKey;
 import org.sunbird.message.IResponseMessage;
 import org.sunbird.message.Localizer;
