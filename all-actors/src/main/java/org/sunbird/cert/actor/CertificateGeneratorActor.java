@@ -18,7 +18,6 @@ import org.sunbird.BaseActor;
 import org.sunbird.BaseException;
 import org.sunbird.CertMapper;
 import org.sunbird.CertsConstant;
-import org.sunbird.PdfGenerator;
 import org.sunbird.QRStorageParams;
 import org.sunbird.incredible.processor.views.SvgGenerator;
 import org.sunbird.cert.actor.operation.CertActorOperation;
@@ -144,7 +143,7 @@ public class CertificateGeneratorActor extends BaseActor {
                 CertificateResponse certificateResponse = null;
                 String jsonData = certificateGenerator.generateCertificateJson(certificateExtension);
                 String qrImageUrl = uploadQrCode((File) qrMap.get(JsonKey.QR_CODE_FILE), properties);
-                String pdfLink = PdfGenerator.generate(htmlTemplateUrl, certificateExtension, qrImageUrl, getContainerName(storeParams), certStoreFactory.setCloudPath(storeParams));
+                String pdfLink = "";
                 certificateResponse = new CertificateResponseV1(uuid, accessCode, certModel.getIdentifier(), convertStringToMap(jsonData), properties.get(JsonKey.BASE_PATH).concat(pdfLink));
                 Map<String, Object> uploadRes = uploadJson(directory + uuid, certStore, certStoreFactory.setCloudPath(storeParams));
                 certificateResponse.setJsonUrl(properties.get(JsonKey.BASE_PATH).concat((String) uploadRes.get(JsonKey.JSON_URL)));
